@@ -1,0 +1,17 @@
+
+-- requete R0
+
+--set autotrace trace explain
+set autotrace off
+
+set sqlbl on
+set timing off
+set linesize 100
+
+define D = '01-01-1993'
+
+
+select count(*) 
+from lineitem 
+where l_shipdate <= to_date( '&D', 'DD-MM-YYYY');
+
