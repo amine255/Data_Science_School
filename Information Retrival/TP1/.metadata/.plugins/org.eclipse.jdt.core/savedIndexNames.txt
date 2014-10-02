@@ -1,14 +1,13 @@
-INDEX VERSION 1.126+/home/arda/Documents/Data_Science_School/Information Retrival/TP1/.metadata/.plugins/org.eclipse.jdt.core
-2394455635.index
-4283186875.index
-129000749.index
-407801866.index
-3945757009.index
-1752837402.index
-1036285529.index
-3343881067.index
-2536809682.index
+INDEX VERSION 1.126+/users/nfs/Etu6/3402426/Documents/M2/Information Retrival/TP1/.metadata/.plugins/org.eclipse.jdt.core
+793548469.index
+1571132609.index
+1874816958.index
+2621063396.index
+2585720677.index
+506960581.index
+694353775.index
 3338631654.index
-318542461.index
-2159858439.index
-3524801114.index
+2185253921.index
+3426510821.index
+3514786533.index
+1474067260.index
