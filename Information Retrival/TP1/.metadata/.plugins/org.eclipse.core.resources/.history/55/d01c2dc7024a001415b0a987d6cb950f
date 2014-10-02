@@ -1,0 +1,33 @@
+import java.io.RandomAccessFile;
+
+
+
+
+public class Main {
+	
+	String path ="/home/arda/Documents/Data_Science_School/Information Retrival/TP1/data/cisi.txt";
+	
+	
+	
+	RandomAccessFile file = new RandomAccessFile(path, "rw");
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public static void main(String[] args) {
+	
+		System.out.println("okokbro");
+
+	}
+
+}

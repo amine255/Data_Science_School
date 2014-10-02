@@ -1,0 +1,50 @@
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+
+
+
+public class Main {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public static void main(String[] args) {
+	
+		System.out.println("okokbro");
+		
+		String path ="/home/arda/Documents/Data_Science_School/Information Retrival/TP1/data/cisi.txt";
+		
+		
+		try{
+		RandomAccessFile file = new RandomAccessFile(path, "rw");
+		
+		
+		int aByte = file.readLine();
+		while(data != -1) {
+			  //do something with data...
+			  doSomethingWithData(data);
+
+			  data = input.read();
+			}
+		
+		System.out.println(aByte);
+		
+		}catch(IOException e){
+			  //do something with e... log, perhaps rethrow etc.
+		}
+		
+		
+
+	}
+
+}
