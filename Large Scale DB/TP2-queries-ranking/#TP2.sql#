@@ -1,0 +1,85 @@
+--TP2 requete analytiques
+
+
+--A1 Le top 10 des clients ayant dépensé le plus
+select*from(
+select 
+       c_custkey, sum(o_totalprice) as montant_total,
+       rank() over (order by sum(o_totalprice) DESC) as Rang
+from 
+     customer,orders
+where 
+      c_custkey=o_custkey
+group by 
+      c_custkey
+) a
+where a.Rang <= 10;
+
+--A2 Le top 5 des pays avec le plus grand nombre de clients
+
+-- En utilisant Rank()
+select*from(
+select 
+       n_nationkey, n_name, count(c_custkey) as NB_DE_CLIENTS ,
+       rank() over (order by count(c_custkey) DESC) as Rang
+from 
+     nation,customer
+where 
+      n_nationkey=c_nationkey
+group by 
+      n_nationkey,n_name
+) a
+where a.Rang <= 5;
+
+
+--En utilisant Rank_dense()
+select*from(
+select 
+       n_nationkey, n_name, count(c_custkey) as NB_DE_CLIENTS ,
+       dense_rank() over (order by count(c_custkey) DESC) as Rang
+from 
+     nation,customer
+where 
+      n_nationkey=c_nationkey
+group by 
+      n_nationkey,n_name
+) a
+where a.Rang <= 5;
+
+
+--A4: Le top 20% des pays avec le plus grand nombre de clients.
+
+
+select * from(
+select
+       n_nationkey, n_name, count(c_custkey) as NB_DE_CLIENTS ,
+       dense_rank() over (order by count(c_custkey) DESC) as Rang,
+       percent_rank()over (order by count(c_custkey)desc) as rangRel
+from 
+     nation,customer
+where 
+      n_nationkey=c_nationkey
+group by 
+      n_nationkey,n_name
+  ) a
+where a.rangRel <= .20;
+
+--A5: Classement national des produits vendus en plus grande quantité.
+
+
+column rangRel format 9.99
+
+
+select
+       n_nationkey, n_name, count(c_custkey) as NB_DE_CLIENTS ,
+ 
+from 
+     nation,customer
+where 
+      n_nationkey=c_nationkey
+group by 
+      n_nationkey,n_name
+
+
+
+
