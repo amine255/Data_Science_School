@@ -10,6 +10,7 @@ public class Main {
 	
 	private static byte[] readFromFile(String filename, long position, int size)
 			throws IOException {
+		
 		RandomAccessFile file = new RandomAccessFile(filename, "r");
 		file.seek(position);
 		byte[] bytes = new byte[size];
@@ -43,69 +44,46 @@ public class Main {
 //			System.out.println(Phrase);
 			
 			RandomAccessFile file = new RandomAccessFile(FILEPATH, "r");
+
+			long line_id;
+			boolean match_I;
+			String line = new String(file.readLine());
 			
-			
-			
-//			
 			ArrayList<Long> I_stack = new ArrayList<Long>();		
-			while (file.readLine() != null) {
-//				FileChannel fc = file.getChannel();
-//				System.out.println(fc.toString());
-//				file.readLine();
-				long line_id = file.getFilePointer();
-//				String I_ids = new String(readFromFile(FILEPATH, line_id, 3));
-//				String I_ids = new String(file.readLine());
-				
-				
-				String Line = file.readLine();
-//				System.out.println(Line);
-				
-				boolean match_I = Line.matches(".I [0-9]+");
-								
-				if (match_I)  {
-					I_stack.add(line_id);
-//					System.out.println(line_id);
-					
-					
-					
-				}
-////				
-////				
-				}
-			System.out.println(I_stack.size());
-			System.out.println("finish");
+			file.seek(0);
 			
-			
-//			System.out.println(file.getFilePointer());
-//			System.out.println(file.readLine());
-//			file.readLine();
-//			System.out.println(file.readLine());
-//			System.out.println(file.getFilePointer());
+			for (int i=0; i < 3 ;i++)   {
+				while (line != null) {
+					
+					match_I= line.matches(".I [0-9]+");
+				 
+					if (match_I)  {
+						line_id = file.getFilePointer();
+						I_stack.add(line_id);
+
+										
+					}
+					
+					}
+				
+			}
 		
 			
-			
-			
-			
-			
-			
-			
-			
-			
-//			String test = "dsfqdfqsdf. qsdfqsdfqsdf .I bonjour brodsfqsdfs .I dqsfgdsgdsfgd";
+//			System.out.println(I_stack.size());
+//			System.out.println("finish");
+//			long diff = I_stack.get(1)-I_stack.get(0);
 //			
+//			byte[] bytes = new byte[(int) diff];
 //			
-//			String[] output = test.split(".I").clone();
-//			System.out.println(output[2]);
+//			file.seek(I_stack.get(0));
 //			
-//			Pattern pattern = Pattern.compile(".I");
-//			Matcher matcher = pattern.matcher(test);
-//			if (matcher.find())
-//			{
-//			    System.out.println(matcher.group(1));
-//			}
+////			String text = new String(file.read(bytes));
+//			file.read(bytes);
+//			System.out.println( new String(bytes));
+
 			
 			
-			
+				
 			
 			//writeToFile(FILEPATH, "hello bros", 22);
 		} catch (IOException e) {
