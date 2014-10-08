@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,8 +34,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 
-//	String FILEPATH = "/home/arda/Documents/Data_Science_School/Information Retrival/TP1/data/cisi.txt";
-	String FILEPATH = "/users/Etu6/3402426/Documents/M2/Information Retrival/TP1/data/cisi.txt";
+	String FILEPATH = "/home/arda/Documents/Data_Science_School/Information Retrival/TP1/data/cisi.txt";
+//	String FILEPATH = "/users/Etu6/3402426/Documents/M2/Information Retrival/TP1/data/cisi.txt";
 		
 		try {
 
@@ -43,30 +44,35 @@ public class Main {
 			
 			RandomAccessFile file = new RandomAccessFile(FILEPATH, "r");
 			
-
 			
-
-	
 			
+//			
+			ArrayList<Long> I_stack = new ArrayList<Long>();		
 			while (file.readLine() != null) {
-				
-				
-				file.readLine();
+//				FileChannel fc = file.getChannel();
+//				System.out.println(fc.toString());
+//				file.readLine();
 				long line_id = file.getFilePointer();
-				String I_ids = new String(readFromFile(FILEPATH, line_id, 2));
+//				String I_ids = new String(readFromFile(FILEPATH, line_id, 3));
+//				String I_ids = new String(file.readLine());
 				
-				System.out.println(I_ids);
 				
-				if (I_ids == ".I")  {
-					
-					System.out.println("ok");
+				String Line = file.readLine();
+//				System.out.println(Line);
+				
+				boolean match_I = Line.matches(".I [0-9]+");
+								
+				if (match_I)  {
+					I_stack.add(line_id);
+//					System.out.println(line_id);
 					
 					
 					
 				}
-				
-				
+////				
+////				
 				}
+			System.out.println(I_stack.size());
 			System.out.println("finish");
 			
 			
