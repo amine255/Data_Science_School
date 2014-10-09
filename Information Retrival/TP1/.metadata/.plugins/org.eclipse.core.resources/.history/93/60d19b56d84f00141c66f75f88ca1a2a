@@ -1,0 +1,8 @@
+
+public class Document {
+	
+	String id;
+	String text;
+	String from;
+
+}
