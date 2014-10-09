@@ -3,65 +3,99 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 
-public class Parser_cisi {
-	String phrase;
-	
-	
-	public Parser_cisi(){
-	
-		String FILEPATH = "/home/arda/Documents/Data_Science_School/Information Retrival/TP1/data/cisi.txt";
-//		String FILEPATH = "/users/Etu6/3402426/Documents/M2/Information Retrival/TP1/data/cisi.txt";
+class Parser_cisi{
+
+
+	public Parser_cisi() {
+		
+//		String FILEPATH = "/home/arda/Documents/Data_Science_School/Information Retrival/TP1/data/cisi.txt";
+		String FILEPATH = "/users/Etu6/3402426/Documents/M2/Information Retrival/TP1/data/cisi.txt";
+		
 			
 		try {
+			
 			RandomAccessFile file = new RandomAccessFile(FILEPATH, "r");
 
 			long line_id;
-			String line = null;
+			String line = file.readLine();
 			boolean match_I;
 
 			ArrayList<Long> I_stack = new ArrayList<Long>();		
 			file.seek(0);
 			
-			while ( (line = file.readLine()) != null) {
-//				System.out.println(line + line.length());
-				match_I = line.matches(".I [0-9]+");
-
-				if (match_I){
+			
+			while (I_stack.size() != 2) {
+//				System.out.println(i);
+				
+				if (file.readLine().matches(".I [0-9]+")) {
+					
 					line_id = file.getFilePointer();
+//					System.out.println(line_id);
 					I_stack.add(line_id);
-					
-					
 				}
+				
+				file.readLine();
+				
 			}
 			
 			System.out.println(I_stack.size());
 			System.out.println("finish");
-			long diff = I_stack.get(5)-I_stack.get(0);
-			
+			long diff = I_stack.get(1)-I_stack.get(0);
+			System.out.println(diff);
 			byte[] bytes = new byte[50];
-//			System.out.println(bytes);
+					
 			file.seek(I_stack.get(0));
-			System.out.println(I_stack.get(0));
+//			String str = new String(integer);
+			
 			System.out.println(new String(bytes));
-//			this.phrase = new String(bytes);
 			
 			
+		
 			
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
+			
+//			
+//			
+//			while ( (line = file.readLine() ) != null) {
+//				
+////				System.out.println(line + line.length());
+//				match_I = line.matches(".I [0-9]+");
+//
+//				if (match_I){
+//					
+//					
+//					
+//					line_id = file.getFilePointer();
+//					I_stack.add(line_id);
+//				}
+//			}
+//			
+//			System.out.println(I_stack.size());
+//			System.out.println("finish");
+//			long diff = I_stack.get(1)-I_stack.get(0);
+//			System.out.println(diff);
+//			byte[] bytes = new byte[(int) diff];
+//////			System.out.println(bytes);
+////			file.seek(I_stack.get(0));
+////			System.out.println(I_stack.get(0));
+////			
+//			System.out.println(new String(bytes));
+//////			this.phrase = new String(bytes);
+//	
+//		}
 		
 		
+		
+	}catch (IOException e) {
+		e.printStackTrace();
 	}
 
-//	
-//	public void Document(){
-//		
-//		
-//
-////		
-//}
+			
+}
 	
+	
+
+ 
+    }
 }
 
 

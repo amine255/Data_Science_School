@@ -1,0 +1,11 @@
+
+public abstract class Parser {
+	String start;
+		
+	
+	abstract void getdocument(String text);
+	
+	
+	
+
+}

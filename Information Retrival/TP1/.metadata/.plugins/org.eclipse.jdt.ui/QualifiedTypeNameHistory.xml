@@ -4,6 +4,7 @@
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
 <fullyQualifiedTypeName name="java.util.regex.Matcher"/>
-<fullyQualifiedTypeName name="Parser_cisi"/>
+<fullyQualifiedTypeName name="Parser"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="Parser_cisi"/>
 </qualifiedTypeNameHistroy>

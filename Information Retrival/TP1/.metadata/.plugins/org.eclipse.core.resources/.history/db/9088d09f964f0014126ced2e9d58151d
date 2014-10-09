@@ -1,0 +1,14 @@
+
+abstract public class Parser {
+	String start;
+	
+	public Parser(){
+		
+		
+		
+	}
+	
+	
+	
+
+}

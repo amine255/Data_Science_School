@@ -1,0 +1,35 @@
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main {
+	
+	
+	private static byte[] readFromFile(String filePath, int position, int size)
+            throws IOException {
+ 
+        RandomAccessFile file = new RandomAccessFile(filePath, "r");
+        file.seek(position);
+        byte[] bytes = new byte[size];
+        file.read(bytes);
+        file.close();
+        return bytes;
+        
+	}
+
+	
+	public static void main(String[] args) {
+
+//Parser_cisi parser = new Parser_cisi();
+
+String FILEPATH = "/users/Etu6/3402426/Documents/M2/Information Retrival/TP1/data/cisi.txt";
+
+	}
+
+	
+
+	
+}

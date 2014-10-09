@@ -1,0 +1,22 @@
+
+abstract public class Parser {
+	String start;
+	
+	public Parser(){
+		
+		
+		
+	}
+	
+	
+	
+	abstract private void getdocument(){
+		
+		
+		
+	}
+	
+	
+	
+
+}

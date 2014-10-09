@@ -1,0 +1,19 @@
+
+abstract class Parser {
+	String start;
+	
+	abstract class Parser(){
+	
+		
+		
+		
+	}
+	
+	
+	
+	abstract void getdocument(String text);
+	
+	
+	
+
+}
