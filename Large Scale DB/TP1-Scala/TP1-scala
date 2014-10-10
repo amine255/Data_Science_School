@@ -1,0 +1,35 @@
+1. Que contient la variable data?
+
+org.apache.spark.rdd.RDD[String] = MappedRDD[1] at textFile at <console>:12
+
+2. Dans un premier temps, structurer le contenu de data de sorte à obtenir un tableau de tableaux de chaines de caracteres. Ce dernier devra être stocké  dans une nouvelle variable liste.
+
+val liste=data.map(x=>x.split(" "))
+
+Afficher ensuite les 100 premiers éléments correspondant à la 3e colonne de data.
+
+val only_third_100=data.map(x=>x.split(" ")).map(x=>(x(2)))
+
+
+3- Transformer le contenu de liste en une liste de paires (‘mot’, nb) où mot est de type String et correspond à la premiere case d’un élément de liste et nb est un entier qui correspond à sa troisieme case.
+
+val tuple = liste.map(x=>(x(0),x(2).toInt))
+scala> tuple(1)
+res220: (String, Int) = (De,3)
+
+scala> tuple(1)._1
+res222: String = De
+
+scala> tuple(1)._2
+res224: Int = 3
+
+
+4- Grouper les paires par ‘mot’ et additionner leur nombre nb.
+
+tuple.reduceByKey((a,b)=> a+b)
+
+
+5- Reprendre les questions 3 et 4 en calculant ‘mot’ différemment : désormais, ‘mot’ doit correspondre au préfixe du premier élément de chaque élément de liste.
+
+liste.map(x=>x(0).split("\\.")).take(10)
+c'est pas finis...
