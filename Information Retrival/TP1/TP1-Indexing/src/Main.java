@@ -8,33 +8,32 @@ import java.util.regex.Pattern;
 public class Main {
 	
 	
-	private static byte[] readFromFile(String filePath, int position, int size)
-            throws IOException {
- 
-        RandomAccessFile file = new RandomAccessFile(filePath, "r");
-        file.seek(position);
-        byte[] bytes = new byte[size];
-        file.read(bytes);
-        file.close();
-        return bytes;
-        
-	}
+//	private static byte[] readFromFile(String filePath, int position, int size)
+//            throws IOException {
+// 
+//        RandomAccessFile file = new RandomAccessFile(filePath, "r");
+//        file.seek(position);
+//        byte[] bytes = new byte[size];
+//        file.read(bytes);
+//        file.close();
+//        return bytes;
+//        
+//	}
 
 	
 	public static void main(String[] args) {
 
-//Parser_cisi parser = new Parser_cisi();
 
-String FILEPATH = "/users/Etu6/3402426/Documents/M2/Information Retrival/TP1/data/cisi.txt";
-
-try {
-	System.out.println(new String(readFromFile(FILEPATH, 150, 23)));
-} catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
+Parser_cisi arda_parser = new Parser_cisi();
+Document nextdoc = arda_parser.nextDocument();
 
 
+
+Document getdoc = arda_parser.getDocument(nextdoc.text);
+
+System.out.println(getdoc.from);
+System.out.println(getdoc.id);
+System.out.println(getdoc.text);
 
 	}
 

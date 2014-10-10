@@ -1,0 +1,16 @@
+
+class Parser {
+	String start;
+		
+	public Parser(){
+		
+		
+	}
+	
+	abstract void getDocument();
+	
+	
+	
+	
+
+}

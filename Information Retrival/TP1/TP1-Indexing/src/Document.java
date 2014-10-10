@@ -1,8 +1,12 @@
 
-public class Document {
+class Document {
 	
-	String id;
+	int id;
 	String text;
-	String from;
+	long from;
+	
+	Document(){
+		
+	}
 
 }
