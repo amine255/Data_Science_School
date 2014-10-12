@@ -29,11 +29,11 @@ Document nextdoc = arda_parser.nextDocument();
 
 
 
-Document getdoc = arda_parser.getDocument(nextdoc.text);
+//Document getdoc = arda_parser.getDocument(nextdoc.text);
 
-System.out.println(getdoc.from);
-System.out.println(getdoc.id);
-System.out.println(getdoc.text);
+//System.out.println(getdoc.from);
+//System.out.println(getdoc.id);
+//System.out.println(getdoc.text);
 
 	}
 
