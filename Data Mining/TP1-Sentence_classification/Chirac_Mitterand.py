@@ -46,27 +46,27 @@ def create_dictionary(alltxts,labs):
     print "Creating Bag of Words..."  
     
     
-#    stoplist = set(u'le la a dans les de des à un une est en au ne ce d l c s je tu il que qui mais quand et pas pour vous nous'.split())
-#    stoplist = set(u'de_la,la_france,c_est,de_l'.split(","))
+#    stoplist = set(u'le du qu on la a dans les de des à un une est en au ne ce d l c s je tu il que qui mais quand et pas pour vous nous'.split())
+    stoplist = set(u'de_la,la_france,c_est,de_l'.split(","))
 #    stoplist = set(''.split())
 #    stoplist = set('le la les de des à un une en au ne ce d l c s je tu il que qui mais quand'.split())
 #    stoplist = set(' '.split())
-#    stoplist.add(u' ')
+    stoplist.add(u' ')
     
     ## DICO
     splitters = u'; |, |\*|\. | |\'|'
     
-#     remplacement de la ligne:
-    dictionary = corpora.Dictionary(re.split(splitters, doc.lower()) for doc in alltxts)
-
-#    liste = (re.split(splitters, doc.lower()) for doc in alltxts) # generator = pas de place en memoire
-#    dictionary = corpora.Dictionary([u"{0}_{1}".format(l[i],l[i+1]) for i in xrange(len(l)-1)] for l in liste) # bigrams
+##     remplacement de la ligne:
+#    dictionary = corpora.Dictionary(re.split(splitters, doc.lower()) for doc in alltxts)
+#
+    liste = (re.split(splitters, doc.lower()) for doc in alltxts) # generator = pas de place en memoire
+    dictionary = corpora.Dictionary([u"{0}_{1}".format(l[i],l[i+1]) for i in xrange(len(l)-1)] for l in liste) # bigrams
 
     
     print len(dictionary)
 
     stop_ids = [dictionary.token2id[stopword] for stopword in stoplist   if stopword in dictionary.token2id]
-    once_ids = [tokenid for tokenid, docfreq in dictionary.dfs.iteritems() if docfreq < 3]
+    once_ids = [tokenid for tokenid, docfreq in dictionary.dfs.iteritems() if docfreq < 2]
     dictionary.filter_tokens(stop_ids+once_ids) # remove stop words and words that appear only once
     dictionary.compactify() # remove gaps in id sequence after words that were removed
 
@@ -77,14 +77,14 @@ def create_dictionary(alltxts,labs):
 
 def create_corpus(stoplist,splitters,dictionary,alltxts):
     
-    texts = [[word for word in re.split(splitters, document.lower()) if word not in stoplist]  for document in alltxts]
+#    texts = [[word for word in re.split(splitters, document.lower()) if word not in stoplist]  for document in alltxts]
+#    
+#    corpus = [dictionary.doc2bow(text) for text in texts]
     
-    corpus = [dictionary.doc2bow(text) for text in texts]
-    
-#    # projection des documents:
-#    liste = (re.split(splitters, doc.lower()) for doc in alltxts) # ATTENTION: quand le générator a déjà servi, il ne se remet pas au début => le re-créer pour plus de sécurité 
-#    alltxtsBig = ([u"{0}_{1}".format(l[i],l[i+1]) for i in xrange(len(l)-1)] for l in liste)
-#    corpus = [dictionary.doc2bow(text) for text in alltxtsBig]
+    # projection des documents:
+    liste = (re.split(splitters, doc.lower()) for doc in alltxts) # ATTENTION: quand le générator a déjà servi, il ne se remet pas au début => le re-créer pour plus de sécurité 
+    alltxtsBig = ([u"{0}_{1}".format(l[i],l[i+1]) for i in xrange(len(l)-1)] for l in liste)
+    corpus = [dictionary.doc2bow(text) for text in alltxtsBig]
 
 
     # Transformation pour passer en matrice numpy
@@ -151,11 +151,10 @@ print "data2_test.shape :", data2_test.shape
 #dataSparse_test = data2_test
 
 #DEFINE CLASSIFIER
-from sklearn.naive_bayes import GaussianNB
+
 from sklearn.naive_bayes import MultinomialNB
-from sklearn import linear_model
 from sklearn import svm
-from sklearn import tree
+
 
 #clf = svm.SVC(C=1,kernel='linear',class_weight ='auto')  # definition du classifieur
 #clf = svm.LinearSVC(C=1e3) # definition du classifieur
@@ -186,38 +185,38 @@ scores
 #PREDICTION
 prediction = clf.predict(dataSparse_test)
 #
-#prediction1 = np.where(prediction==-1,-3,1)
+prediction1 = np.where(prediction==-1,-3,1)
+
+for i in range(5,prediction1.shape[0]-6):
+    for k in range(1,5):
+        prediction1[i]+= (prediction1[i-k]+prediction1[i+k])/8.0
+        
+prediction2 = np.where(prediction1<0,-1,1)
+
+prediction = prediction2    
+
+
+    
 #
-#for i in range(5,prediction1.shape[0]-6):
-#    for k in range(1,5):
-#        prediction1[i]+= (prediction1[i-k]+prediction1[i+k])/8.0
+for i in range(prediction.shape[0]):
+    if prediction[i] == prediction[i-2] == -1:
+        prediction[i-1]=-1
+
 #        
-#prediction2 = np.where(prediction1<0,-1,1)
-#
-#prediction = prediction2    
-#
-#
-#    
-##
+for i in range(prediction.shape[0]):
+    if prediction[i] == prediction[i-3] == -1:
+        prediction[i-1]= -1
+        prediction[i-2]= -1
+#        
 #for i in range(prediction.shape[0]):
-#    if prediction[i] == prediction[i-2] == -1:
-#        prediction[i-1]=-1
-#
-##        
-#for i in range(prediction.shape[0]):
-#    if prediction[i] == prediction[i-3] == -1:
-#        prediction[i-1]= -1
-#        prediction[i-2]= -1
-##        
-##for i in range(prediction.shape[0]):
-##    if prediction[i] == prediction[i-3] == 1:
-##        prediction[i-1]= 1
-##        prediction[i-2]= 1
-#
-##        
-#for i in range(prediction.shape[0]):
-#    if prediction[i] == prediction[i-2] == 1:
+#    if prediction[i] == prediction[i-3] == 1:
 #        prediction[i-1]= 1
+#        prediction[i-2]= 1
+
+#        
+for i in range(prediction.shape[0]):
+    if prediction[i] == prediction[i-2] == 1:
+        prediction[i-1]= 1
 
 
 #WRITING TO TEXTFILE
