@@ -7,7 +7,7 @@ class Parser_cisi extends Parser{
 	
 
 	Parser_cisi() {
-		super.start = ".I";
+		super.start = ".I [0-9]+";
 		
 		
 

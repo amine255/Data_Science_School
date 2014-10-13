@@ -6,7 +6,6 @@ class Document {
 	long from;
 	
 	Document(){
-		
 	}
 
 }
