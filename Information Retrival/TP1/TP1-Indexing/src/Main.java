@@ -8,17 +8,7 @@ import java.util.regex.Pattern;
 public class Main {
 	
 	
-//	private static byte[] readFromFile(String filePath, int position, int size)
-//            throws IOException {
-// 
-//        RandomAccessFile file = new RandomAccessFile(filePath, "r");
-//        file.seek(position);
-//        byte[] bytes = new byte[size];
-//        file.read(bytes);
-//        file.close();
-//        return bytes;
-//        
-//	}
+
 
 	
 	public static void main(String[] args) {
