@@ -1,22 +1,20 @@
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Main {
-	
-	
-
-
 	
 	public static void main(String[] args) {
 
 
 Parser_cisi arda_parser = new Parser_cisi();
-Document nextdoc = arda_parser.nextDocument();
 
+
+for (int i=0; i<2;i++){
+//	System.out.println("indice i boucle for :" + i);
+	Document nextdoc = arda_parser.nextDocument();
+	System.out.println(nextdoc.from);
+	System.out.println(nextdoc.id);
+	System.out.println(nextdoc.text);
+	
+	
+}
 
 
 //Document getdoc = arda_parser.getDocument(nextdoc.text);
