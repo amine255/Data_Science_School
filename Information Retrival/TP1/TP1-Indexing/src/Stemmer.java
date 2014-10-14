@@ -53,7 +53,7 @@ import java.util.regex.Pattern;
 public class Stemmer
 {
    private ArrayList<String> stopWords;
-    private char[] b;
+   private char[] b;
    private int i,     /* offset into b */
                i_end, /* offset to end of stemmed word */
                j, k;
