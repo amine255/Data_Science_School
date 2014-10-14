@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Main {
 	
 	public static void main(String[] args) {
@@ -16,21 +18,19 @@ Parser_cisi arda_parser = new Parser_cisi();
 	
 //}
 
-String[] splitted_text = nextdoc.text.split(" ");
-
-
-for (int i=0;i<splitted_text.length;i++){
-	System.out.println(splitted_text[i]);
-	
-	
-}
+//String[] splitted_text = nextdoc.text.split(" ");
+//
+//
+//for (int i=0;i<splitted_text.length;i++){
+//	System.out.println(splitted_text[i]);
+//	
+//	
+//}
 
 Stemmer stem = new Stemmer();
-//String[] arda = "hello bitch i want to be a joke for lol".split(" ");
-//String FILEPATH = "D:/Dropbox/M2 DAC/Data_Science_School/Information Retrival/TP1/data/cisi.txt";
-//
-stem.main(splitted_text);
-	
+HashMap<String,Integer> res = stem.porterStemmerHash(nextdoc.text);
+
+System.out.println(res.values());
 //Document getdoc = arda_parser.getDocument(nextdoc.text);
 
 //System.out.println(getdoc.from);
