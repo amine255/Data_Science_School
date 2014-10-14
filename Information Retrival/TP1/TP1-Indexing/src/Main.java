@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class Main {
+public class main {
 	
 	public static void main(String[] args) {
 
@@ -31,11 +31,7 @@ Stemmer stem = new Stemmer();
 HashMap<String,Integer> res = stem.porterStemmerHash(nextdoc.text);
 
 System.out.println(res.values());
-//Document getdoc = arda_parser.getDocument(nextdoc.text);
 
-//System.out.println(getdoc.from);
-//System.out.println(getdoc.id);
-//System.out.println(getdoc.text);
 
 	}
 
