@@ -6,31 +6,36 @@ public class main {
 
 
 Parser_cisi arda_parser = new Parser_cisi();
-
-
-//for (int i=0; i<1;i++){
-//	System.out.println("indice i boucle for :" + i);
-	Document nextdoc = arda_parser.nextDocument();
-//	System.out.println("nextdoc.from"+nextdoc.from);
-//	System.out.println("nextdoc.id"+nextdoc.id);
-	System.out.println("nextdoc.text "+nextdoc.text);
-	System.out.println("=================");
-	
-//}
-
-//String[] splitted_text = nextdoc.text.split(" ");
-//
-//
-//for (int i=0;i<splitted_text.length;i++){
-//	System.out.println(splitted_text[i]);
-//	
-//	
-//}
-
 Stemmer stem = new Stemmer();
-HashMap<String,Integer> res = stem.porterStemmerHash(nextdoc.text);
 
-System.out.println(res.values());
+HashMap<Integer,Long> docs = new HashMap<Integer,Long>();
+HashMap<String,Integer> stems = new HashMap<String, Integer>();
+HashMap<Integer,Integer> docFrom = new HashMap<Integer, Integer>();
+
+
+
+for (int i=0; i<2;i++){
+	System.out.println("indice i boucle for :" + i);
+	
+	Document doc = arda_parser.nextDocument();
+	
+//	System.out.println(doc.from);
+//	System.out.println(doc.text);
+	System.out.println(doc.id);
+	System.out.println(doc.from);
+	
+	docs.put(doc.id,doc.from);
+	System.out.println(docs.entrySet());
+	String key ="DALAN";
+//	res.remove(key);
+	byte[] b = key.getBytes();
+	
+	System.out.println(b);
+	
+}
+
+
+
 
 
 	}
