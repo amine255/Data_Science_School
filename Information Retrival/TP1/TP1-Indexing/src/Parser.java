@@ -46,14 +46,15 @@ abstract class Parser {
 		String text;
 		int id =0;
 		long from=0;
+		
+		
 
 
 		try {
 
 			ArrayList<Long> I_stack = new ArrayList<Long>();		
 			String line = "";
-
-			while (I_stack.size() != 2){
+			while ( (I_stack.size() != 2) || (file.getFilePointer()==file.length()) ){
 
 				byte b = (byte) file.read();
 				if (b == '\n'){ 
@@ -66,7 +67,7 @@ abstract class Parser {
 						id = Integer.parseInt(splitted[1]);
 
 						I_stack.add(file.getFilePointer());
-//						System.out.println(file.getFilePointer());
+						System.out.println(file.getFilePointer());
 
 					}
 
