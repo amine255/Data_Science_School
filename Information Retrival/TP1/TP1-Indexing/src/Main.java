@@ -1,6 +1,9 @@
 import java.util.HashMap;
 
-public class main {
+public class Main {
+	
+	
+	
 	
 	public static void main(String[] args) {
 
@@ -8,23 +11,26 @@ public class main {
 Parser_cisi arda_parser = new Parser_cisi();
 Stemmer stem = new Stemmer();
 
-HashMap<Integer,Long> docs = new HashMap<Integer,Long>();
+HashMap<Integer,Integer> docs = new HashMap<Integer,Integer>();
 HashMap<String,Integer> stems = new HashMap<String, Integer>();
 HashMap<Integer,Integer> docFrom = new HashMap<Integer, Integer>();
 
 
-//while (true) {
-for (int i=0; i<2;i++){
+//while () {
+for (int i=0; i<2500;i++){
 //	System.out.println("indice i boucle for :" + i);
-	
+
 	Document doc = arda_parser.nextDocument();
 	
-//	System.out.println(doc.from);
-//	System.out.println(doc.text);
-	System.out.println(doc.id);
+//	System.out.println(doc.from[1]);
+//	System.out.println("DOC FROM :"+doc.from[0]);
+//	System.out.println("DOC ID :"+doc.id);
+	System.out.println(doc.text);
+	
 //	System.out.println(doc.from);
 	
-//	docs.put(doc.id,doc.from);
+	
+	docs.put(doc.id,doc.from[0]);
 //	String key ="DALAN";
 ////	res.remove(key);
 //	byte[] b = key.getBytes();
@@ -32,8 +38,13 @@ for (int i=0; i<2;i++){
 //	System.out.println(b.hashCode());
 	
 }
-
 //System.out.println(docs.entrySet());
+//System.out.println(docs.entrySet());
+
+//String[] from = {"Id", "Length"};
+//from[0] = "ok";
+//System.out.println(from[0]);
+
 
 
 
