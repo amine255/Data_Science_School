@@ -3,7 +3,7 @@ class Document {
 	
 	int id;
 	String text;
-	int[] from = new int[2];
+	String from;
 	
 	Document(){
 	}
