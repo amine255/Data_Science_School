@@ -17,17 +17,17 @@ public class Main {
 		HashMap<Integer,String> docFrom = new HashMap<Integer, String>();
 
 
-//		try {
-//			while (arda_parser.file.getFilePointer()!=arda_parser.file.length()) {
-								for (int i=0; i<2500;i++){
+		try {
+			while (arda_parser.file.getFilePointer()!=arda_parser.file.length()) {
+//								for (int i=0; i<2500;i++){
 //					System.out.println("indice i boucle for :" + i);
 
 				Document doc = arda_parser.nextDocument();
 
 					System.out.println("DOC ID :"+doc.id);
 					System.out.println("DOC FROM :"+ doc.from);
+//					System.out.println(arda_parser.file.length());
 					System.out.println(doc.text);
-
 //		
 
 				//	System.out.println();
@@ -40,11 +40,11 @@ public class Main {
 				//	System.out.println(b.hashCode());
 
 			}
-//		} 
-//		catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		} 
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 
 		//System.out.println(docFrom.containsKey(key));

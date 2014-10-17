@@ -93,19 +93,27 @@ abstract class Parser {
 				else {	line += (char)b;  }
 
 
-//				if (file.getFilePointer()==file.length()) {
-//					//					System.out.println("okokok");
-//					I_from.add((int) file.length());
-//					line_length.add((int) line.length());
-//					//					file.close();
-//					System.out.println(line.length());
-//					break;
-////					i++;
-//
-//				}
+//			
 
 			}
-//			System.out.println(I_stack.get(1));
+			
+//			if (file.getFilePointer()==file.length()) {
+//									System.out.println("okokok");
+//				I_from.add((int) file.length());
+//				line_length.add((int) line.length());
+//				//					file.close();
+////				System.out.println(line.length());
+//
+//			}	if (file.getFilePointer()==file.length()) {
+//			System.out.println("okokok");
+//I_from.add((int) file.length());
+//line_length.add((int) line.length());
+////					file.close();
+////System.out.println(line.length());
+//
+//}
+			
+			
 			I_from.set(1, I_from.get(1)-line_length.get(1)-1);
 //			System.out.println(I_stack.get(1));
 
