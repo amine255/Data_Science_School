@@ -1,0 +1,19 @@
+Jointures (sur données de taille réduite)
+
+En supposant toujours la même liste de personnes pers, nous définissons une liste visite comme suit
+
+        var visite = Array((5,"Paris"), (1,"Paris"), (1,"Marseille"), (5,"Lyon"))
+
+Nous voulons effectuer une jointure entre ce qu’on peut considérer comme la table des personnes (renseignées par pers) et celle des visites effectuées par ces personnes (renseignées par visite). L’attribut en commun est le pemier de chaque variable, i.e l’entier qui sert d’identifiant.
+
+    Proposer une solution en utilisant les fonctions map, flatMap et filter.
+    Proposer une solution à base de RDD en utilisant les fonctions map, filter, union et groupByKey.
+
+
+UNE SOLUTION : 
+visite.map(x=>{val c = pers.filter(y=>y._1==x._1)(0); (c._1, c._2, x._2) })
+
+SOLUTION 2 (plus propre):
+
+val out = visite.flatMap(x=>pers.map(y=>(x,y)))
+out.filter(x=>x._1._1 == x._2._1).map(x=>(x._1._1,x._2._2,x._1._2 ))
