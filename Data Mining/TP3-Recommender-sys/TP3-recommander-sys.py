@@ -1,5 +1,17 @@
+
 # coding: utf-8
+
+# In[2]:
+
 import numpy as np
+import scipy.linalg as lin
+import matplotlib.pyplot as plt
+
+
+# In[151]:
+
+
+
 
 def import_data_tain_test(train_db, test_db):
     # u.data  user id | item id | rating | timestamp.
@@ -35,9 +47,8 @@ def bias_calculus(data):
     return user_bias,item_bias
 
 
-	
 def plot_distribution(user_bias,item_bias):
-    import matplotlib.pyplot as plt
+    
     plt.figure()
     plt.subplot(211)
     plt.hist(user_bias,100)
@@ -91,8 +102,189 @@ def matrix_facotisation(data):
 
 
 def user_visualisation(user_latent):
-        # visualisation des users
+    # visualisation des users
     plt.figure()
     plt.imshow(user_latent[:100,:], interpolation="nearest") # 100 premiers utilisateurs
     plt.colorbar()
-    plt.savefig("userLatent.pdf")
+    #plt.savefig("userLatent.pdf")
+    
+def item_visualisation(item_latent):
+    # visualisation des users
+    code,sig,dico = lin.svd(item_latent)
+    item2d = code[:,:2] # deux premieres colonnes = 2 premières valeurs singulières (les plus fortes)
+
+    plt.figure()
+    plt.scatter(item2d[:,0], item2d[:,1])
+    #plt.savefig("itemLatent.pdf")
+    
+def Sparse(data):
+    nu = max(data[:,0]) ; #print "nu :", nu
+    ni = max(data[:,1]) ; #print "ni :", ni
+    row = data[:,0]
+    col = data[:,1] 
+    rat = data[:,2]
+    A  = coo_matrix((rat,(row,col))).todense()
+    return A[1:,1:]
+
+
+# In[696]:
+
+# import data 
+train_db = "/home/arda-mint/Documents/M2/Data Mining/TP3-Recommender-sys/data/u1.base"
+test_db = "/home/arda-mint/Documents/M2/Data Mining/TP3-Recommender-sys/data/u1.test"
+
+data = np.loadtxt(train_db)
+print data.shape
+
+urs = Sparse(data) ; print "user_row_sparse.shape :", user_row_sparse.shape
+irs = urs.T ; print "item_row_sparse.shape :", item_row_sparse.shape
+
+
+
+
+
+# In[696]:
+
+
+
+
+# In[712]:
+
+ub = np.zeros(urs[:,0].shape)
+for i in range(urs.shape[0]):
+    one = urs[i,:]                          #getting one user rating vector
+    none_zero_length = one[one!=0].shape[1] #retaining only non zero value
+    bias = one.sum()/none_zero_length       #getting bias(average) of this vector
+    ub[i,0] = bias
+    
+ib = np.zeros(irs[:,0].shape)
+
+for i in range(irs.shape[0]):
+    
+    one = irs[i,:]
+    none_zero_length = one[one!=0].shape[1]
+    #print none_zero_length
+    if none_zero_length==0:
+        ib[i,0] = 2.5
+    else:
+        bias = one.sum()/none_zero_length
+        ib[i,0] = bias 
+
+
+# In[682]:
+
+for i in range(ib.shape[0]):
+    #print ib[i].shape
+    #print i
+    #print ib[i]
+    if ib[i].shape[0]==0:
+        print ib
+
+
+# In[714]:
+
+ib[710,:]
+
+
+# In[715]:
+
+print ub.shape
+print ib.shape
+print urs.shape
+
+
+# In[275]:
+
+for i in range(urs.shape[0]):
+    urs[i,:]= np.where(urs[i,:]==0,ub[i],urs[i,:])
+    
+for i in range(irs.shape[0]):
+    irs[i,:]= np.where(irs[i,:]==0,ib[i],irs[i,:])
+
+
+# In[705]:
+
+ib[710]
+
+
+# In[716]:
+
+data_test = np.loadtxt(test_db)
+
+urs_t = Sparse(data_test) ; print "user_row_sparse.shape :", urs_t.shape
+irs_t = urs_t.T ; print "item_row_sparse.shape :", irs_t.shape
+
+
+# In[717]:
+
+MSE = 0
+count = 0
+
+for i in range(urs_t.shape[0]):
+    temp = urs_t[i,:]
+    pos = temp[temp!=0]
+    
+    length = pos.shape[1]
+    
+    if length>0:
+        diff = ub[i]-pos
+        MSE += np.square(diff).sum()/length
+        count+=1
+print MSE/count
+
+
+# In[720]:
+
+MSE = 0
+count = 0
+
+for i in range(irs_t.shape[0]):
+    temp = irs_t[i,:]
+    pos = temp[temp!=0]
+    
+    length = pos.shape[1]
+    
+    if length>0:
+        #print pos
+        #print ib[i]
+        diff = ib[i]-pos
+        MSE += np.square(diff).sum()/length
+        count+=1
+print MSE/count
+
+
+# In[582]:
+
+
+
+
+# In[574]:
+
+print ib.shape
+print irs_t.shape
+
+
+# In[632]:
+
+count = 0
+
+for k in range(irs_t.shape[0]):
+    temp = irs_t[k,:]
+    pos = temp[temp!=0]
+    
+    length = pos.shape[1]
+    #print length
+    if length != 0:
+        count+=1
+print count
+
+
+# In[644]:
+
+irs_t[1590,:]
+
+
+# In[ ]:
+
+
+
