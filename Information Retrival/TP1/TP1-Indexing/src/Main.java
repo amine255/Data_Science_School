@@ -18,44 +18,27 @@ public class Main {
 
 
 		try {
-			while (arda_parser.file.getFilePointer()!=arda_parser.file.length()) {
-//								for (int i=0; i<2500;i++){
-//					System.out.println("indice i boucle for :" + i);
+			while (arda_parser.file.length()!=arda_parser.file.getFilePointer()) {
+//												for (int i=0; i<2600;i++){
+													
 
 				Document doc = arda_parser.nextDocument();
 
-					System.out.println("DOC ID :"+doc.id);
-					System.out.println("DOC FROM :"+ doc.from);
-//					System.out.println(arda_parser.file.length());
+				System.out.println("DOC ID :"+doc.id);
+//				System.out.println("DOC FROM :"+ doc.from);
+				//					System.out.println(arda_parser.file.length());
+//				System.out.println(doc.text);
+
+				if (doc.id == 2460) {
 					System.out.println(doc.text);
-//		
-
-				//	System.out.println();
-				//	System.out.println(arda_parser.f;
-				//	docFrom.put(doc.id,doc.from);
-				//	int key =2460;
-				////	res.remove(key);
-				//	byte[] b = key.getBytes();
-				//	
-				//	System.out.println(b.hashCode());
-
+					
+				}
 			}
 		} 
 		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
-		//System.out.println(docFrom.containsKey(key));
-		//System.out.println(docFrom.entrySet());
-
-
-
-
-
-
-
 	}
 
 
