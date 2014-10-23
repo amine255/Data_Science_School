@@ -12,9 +12,8 @@ abstract class Parser {
 
 
 	public Parser() {
-		//		FILEPATH = "D:/Dropbox/M2 DAC/Data_Science_School/Information Retrival/TP1/data/cisi.txt";
-//		String FILEPATH ="/home/arda-mint/Documents/M2/Information Retrival/TP1/data/cisi.txt";
-				String FILEPATH = "/users/Etu6/3402426/Documents/M2/Information Retrival/TP1/data/cisi.txt";
+		String FILEPATH ="/home/arda-mint/Documents/M2/Information Retrival/TP1/data/cisi.txt";
+//				String FILEPATH = "/users/Etu6/3402426/Documents/M2/Information Retrival/TP1/data/cisi.txt";
 		try{
 			file =new RandomAccessFile(FILEPATH, "r");
 			file.seek(0);
@@ -116,7 +115,6 @@ abstract class Parser {
 			String lol = Integer.toString(lenght);
 			doc.from = I_from.get(0).toString() +":"+ lol ;
 			doc.id = id-1;
-
 
 
 		}catch (IOException e) {
