@@ -7,21 +7,21 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 public class Main {
-	
-	
+
+
 	static RandomAccessFile index;
 	static RandomAccessFile inverted;
-	
+
 	public Main(){
-		
-		
+
+
 	}
 
 	public static void remove_star(HashMap stems){
 
 		String key =" * ";
 		stems.remove(key);
-		
+
 
 	}
 
@@ -38,7 +38,7 @@ public class Main {
 
 			int pos = 0;
 
-		
+
 			String index_filepath = "/home/arda-mint/Desktop/Link to M2/Information Retrival/TP1/Index/index_index.txt";
 			String inverted_filepath = "/home/arda-mint/Desktop/Link to M2/Information Retrival/TP1/Index/index_inverted.txt";
 
@@ -133,33 +133,39 @@ public class Main {
 
 	public static void main(String[] args) {
 
+		try {
 
 
-
-		//			SECOND PASS THROUGH INVERTED INDEX
-		String line = "";
-		int i=0;
-
-
-		byte b = (byte) inverted.read();
-
-		if (b == '\n'){ 
-
-			// this is the end of the current line, so prepare to read the next line
-			System.out.println("Read line: " + line);
-
-			if (line.matches(".I [0-9]+")){
+			//			SECOND PASS THROUGH INVERTED INDEX
+			String line = "";
+			int i=0;
 
 
+			byte b;
+
+			b = (byte) inverted.read();
+
+
+			if (b == '\n'){ 
+
+				// this is the end of the current line, so prepare to read the next line
+				System.out.println("Read line: " + line);
+
+				if (line.matches(".I [0-9]+")){
+
+
+				}
+
+				line = "";
 			}
+			else {	line += (char)b;  }
 
-			line = "";
+
+			//			S
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else {	line += (char)b;  }
-
-
-		//			S
-
 
 	}//end public void main
 }
