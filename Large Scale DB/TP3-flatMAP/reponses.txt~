@@ -17,3 +17,17 @@ SOLUTION 2 (plus propre):
 
 val out = visite.flatMap(x=>pers.map(y=>(x,y)))
 out.filter(x=>x._1._1 == x._2._1).map(x=>(x._1._1,x._2._2,x._1._2 ))
+
+
+EXERCICE 2 :
+
+importer les donner sur 4 partitions
+val data = sc.textFile("/Vrac/bdle/data/ratings.dat",4)
+
+visualiser les 10 premieres lignes ?
+data.take(10)
+
+?????
+data.persist(storageLevel)
+
+

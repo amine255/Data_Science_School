@@ -1,0 +1,31 @@
+===========================CONNETION A DISTANCE AU CLUSTER=========================
+ssh -X ssh.ufr-info-p6.jussieu.fr (password: ma session)
+
+ssh -X -l etu22 hdnode1.common.lip6.fr  (password: dac)
+
+	Ensuite :
+
+cp /home/hduser/bdle/config/configure-all $HOME
+cp /home/hduser/bdle/config/spark/prop-spark.conf   $HOME
+
+emacs configure-all et on modifie un truk
+emacs prop-spark.conf et on modifie le port en mettant 4022 (22 étant mon identifiant)
+
+	finalement :
+
+source configure-all
+
+	puis on lance spark-shell en rapant :
+
+spark-tool
+
+
+===========================IMPORTATION du dataset=========================
+hadoop fs -put /home/etudiant/data/ratings.dat /user/etu22/
+
+	avec : home/etudiant/data/ratings.dat || l'endroit ou se trouve le dataset
+	et : /user/etu22/ || l'endroit ou on le copie
+
+
+hadoop fs -ls /user/etu22 || liste le repertoire
+
